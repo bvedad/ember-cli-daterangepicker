@@ -1,8 +1,8 @@
-{{#if hasBlock}}
+{{#if (has-block)}}
   {{yield}}
 {{else}}
-  {{#if label}}
-    <label class={{labelClass}}>{{label}}</label>
+  {{#if this.label}}
+    <label class={{this.labelClass}}>{{this.label}}</label>
   {{/if}}
-  {{input value=rangeText class=inputClasses placeholder=placeholder}}
+  <Input @value={{this.rangeText}} class={{this.inputClasses}} placeholder={{this.placeholder}} />
 {{/if}}

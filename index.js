@@ -17,12 +17,6 @@ module.exports = {
     this.import('vendor/daterangepicker/daterangepicker.css');
   },
 
-  options: {
-    babel: {
-      plugins: ['transform-object-rest-spread'],
-    },
-  },
-
   treeForVendor(vendorTree) {
     var trees = [];
     var daterangepickerPath = path.dirname(require.resolve('daterangepicker'));

@@ -1,7 +1,7 @@
 import { assert } from '@ember/debug';
 import $ from 'jquery';
 import Component from '@ember/component';
-import { run } from '@ember/runloop';
+import { cancel, scheduleOnce } from '@ember/runloop';
 import { isEmpty } from '@ember/utils';
 import { computed } from '@ember/object';
 import moment from 'moment';
@@ -98,7 +98,7 @@ export default Component.extend({
   willDestroy() {
     this._super(...arguments);
 
-    run.cancel(this._setupTimer);
+    cancel(this._setupTimer);
 
     if (this.get('removeDropdownOnDestroy')) {
       $('.daterangepicker').remove();
@@ -174,25 +174,25 @@ export default Component.extend({
   },
 
   setupPicker() {
-    run.cancel(this._setupTimer);
-    this._setupTimer = run.scheduleOnce('afterRender', this, this._setupPicker);
+    cancel(this._setupTimer);
+    this._setupTimer = scheduleOnce('afterRender', this, this._setupPicker);
   },
 
   _setupPicker() {
-    this.$('.daterangepicker-input').daterangepicker(this.getOptions());
+    $('.daterangepicker-input').daterangepicker(this.getOptions());
     this.attachPickerEvents();
   },
 
   attachPickerEvents() {
-    this.$('.daterangepicker-input').on('apply.daterangepicker', (ev, picker) => {
+    $('.daterangepicker-input').on('apply.daterangepicker', (ev, picker) => {
       this.handleDateRangePickerEvent('applyAction', picker);
     });
 
-    this.$('.daterangepicker-input').on('hide.daterangepicker', (ev, picker) => {
+    $('.daterangepicker-input').on('hide.daterangepicker', (ev, picker) => {
       this.handleDateRangePickerEvent('hideAction', picker);
     });
 
-    this.$('.daterangepicker-input').on('cancel.daterangepicker', () => {
+    $('.daterangepicker-input').on('cancel.daterangepicker', () => {
       this.handleDateRangePickerEvent('cancelAction', undefined, true);
     });
   },

@@ -1,4 +1,4 @@
-import { run } from '@ember/runloop';
+import { later } from '@ember/runloop';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import moment from 'moment';
@@ -86,7 +86,7 @@ test('value changes when choosing Last 7 Days date range', function (assert) {
   // open dropdown
   this.$('.daterangepicker-input').click();
 
-  run.later(() => {
+  later(() => {
     this.$('.daterangepicker .ranges ul > li:nth-child(3)').click();
     inputText = this.$('.daterangepicker-input').val();
     assert.equal(inputText, dateRange, 'new date range did not match');
@@ -120,7 +120,7 @@ test('calendar renders with expected date parameters', function (assert) {
   // open drowdown
   this.$('.daterangepicker-input').click();
 
-  run.later(() => {
+  later(() => {
     assert.equal(this.$('.daterangepicker').hasClass('show-calendar'), true, 'dropdown menu doesnt have show-calendar class');
     assert.equal(this.$('.daterangepicker-input').val(), `${this.get('start')} - ${this.get('end')}`, 'start date in calendar input does not match');
 

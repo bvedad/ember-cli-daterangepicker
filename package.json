@@ -25,13 +25,13 @@
     "test": "ember try:each"
   },
   "dependencies": {
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "broccoli-funnel": "^2.0.1",
+    "@ember/jquery": "^2.0.0",
+    "@ember/optional-features": "^2.0.0",
+    "broccoli-funnel": "^3.0.8",
     "broccoli-merge-trees": "^2.0.0",
     "daterangepicker": "^3.0.3",
-    "ember-cli-babel": "^6.9.2",
-    "ember-cli-htmlbars": "^2.0.3",
-    "ember-cli-import-polyfill": "^0.2.0",
+    "ember-cli-babel": "^7.26.11",
+    "ember-cli-htmlbars": "^6.1.1",
     "fastboot-transform": "^0.1.2"
   },
   "devDependencies": {
@@ -48,7 +48,7 @@
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.0.0",
     "ember-resolver": "^4.5.0",
-    "ember-source": "~2.16.2",
+    "ember-source": "~3.16.0",
     "loader.js": "^4.6.0"
   },
   "peerDependencies": {
