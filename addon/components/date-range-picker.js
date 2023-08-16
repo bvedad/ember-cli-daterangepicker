@@ -101,7 +101,8 @@ export default Component.extend({
     cancel(this._setupTimer);
 
     if (this.get('removeDropdownOnDestroy')) {
-      $('.daterangepicker').remove();
+      let elements = this.element.querySelectorAll('.daterangepicker');
+      elements.forEach(el => el.parentNode.removeChild(el));
     }
   },
 
@@ -179,20 +180,23 @@ export default Component.extend({
   },
 
   _setupPicker() {
-    $('.daterangepicker-input').daterangepicker(this.getOptions());
+    let input = $(this.element.querySelector('.daterangepicker-input'));
+    input.daterangepicker(this.getOptions());
     this.attachPickerEvents();
   },
 
   attachPickerEvents() {
-    $('.daterangepicker-input').on('apply.daterangepicker', (ev, picker) => {
+    let input = $(this.element.querySelector('.daterangepicker-input'));
+
+    input.on('apply.daterangepicker', (ev, picker) => {
       this.handleDateRangePickerEvent('applyAction', picker);
     });
 
-    $('.daterangepicker-input').on('hide.daterangepicker', (ev, picker) => {
+    input.on('hide.daterangepicker', (ev, picker) => {
       this.handleDateRangePickerEvent('hideAction', picker);
     });
 
-    $('.daterangepicker-input').on('cancel.daterangepicker', () => {
+    input.on('cancel.daterangepicker', () => {
       this.handleDateRangePickerEvent('cancelAction', undefined, true);
     });
   },
